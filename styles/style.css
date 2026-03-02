@@ -1,9 +1,9 @@
 *{
     padding: 0;
     margin: 0;
+    font-family: 'good-times', sans-serif;
 }
 
 :root{
-    background-color: aliceblue;
     color: black;
 }
