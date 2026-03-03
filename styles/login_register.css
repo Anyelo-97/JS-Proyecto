@@ -61,9 +61,15 @@ button:hover{
 }
 
 button:active{
+
     opacity: 70%;
-    transform:scaleZ(10px ) ;
+    transform:scaleZ(0.96) ;
     transform: translateY(0px);
+}
+
+button:disabled{
+    cursor: not-allowed;
+    opacity: 30%;
 }
 
 a{
