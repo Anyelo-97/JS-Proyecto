@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Estudiante</title>
+    <link rel="stylesheet" href="../styles/perfil.css">
+</head>
+<body>
+    <div class="container">
+        <header class="profile-header">
+            <div class="banner"></div>
+            <div class="profile-pic-container">
+                <img src="" alt="Profile" id="display-pic">
+            </div>
+            <h2 id="display-name">Juan Pérez</h2>
+            <p id="display-role">Estudiante de Ciencias de la Computación</p>
+        </header>
+
+        <form id="profileForm">
+            <section class="card">
+                <h3>Información personal</h3>
+                <div class="grid-layout">
+                    <div class="input-group">
+                        <label>Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="John Doe">
+                    </div>
+                    <div class="input-group">
+                        <label>Correo electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="john.doe@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Teléfono</label>
+                        <input type="text" id="telefono" name="telefono" placeholder="+1 234 567 890">
+                    </div>
+                    <div class="input-group">
+                        <label>Ubicación</label>
+                        <input type="text" id="ubicacion" name="ubicacion" placeholder="New York, USA">
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h3>Información académica</h3>
+                <div class="grid-layout">
+                    <div class="input-group">
+                        <label>Identificación de estudiante</label>
+                        <input type="text" id="estudianteId" name="estudianteId" placeholder="CS2023001">
+                    </div>
+                    <div class="input-group">
+                        <label>Programa</label>
+                        <input type="text" id="programa" name="programa" placeholder="Bachelor of Computer Science">
+                    </div>
+                    <div class="input-group">
+                        <label>Fecha de inicio</label>
+                        <input type="date" id="fechaInicio" name="fechaInicio">
+                    </div>
+                    <div class="input-group">
+                        <label>Graduación esperada</label>
+                        <input type="date" id="fechaFin" name="fechaFin">
+                    </div>
+                </div>
+            </section>
+            
+            <button type="submit" class="save-btn">Guardar Cambios</button>
+        </form>
+    </div>
+    <script src="../scripts/perfil.js"></script>
+</body>
+</html>
