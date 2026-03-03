@@ -1,3 +1,5 @@
+
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -19,6 +21,7 @@ body {
   color: var(--text);
   min-height: 100vh;
   overflow-x: hidden;
+  font-weight: bold;
 }
 
 /* ── NAV ── */
@@ -34,27 +37,44 @@ nav {
   align-items: center;
   padding: 0 32px;
   gap: 8px;
+
 }
 
 .nav-brand {
   font-family: 'Sora', sans-serif;
   font-weight: 700;
   font-size: 1.15rem;
-  color: var(--text);
   letter-spacing: -0.03em;
   margin-right: 24px;
+  margin: 0;
+  padding: 0;
   display: flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
+  color: white;
+  height: 32px;
 }
 
-.nav-brand .logo-icon {
-  width: 32px; height: 32px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border-radius: 9px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
+.logo-icon{
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.03em;
+    margin-right: 24px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    height: 32px;
+}
+
+
+img{
+    margin: 0;
+    width: 64px; 
+    height: 64px;
 }
 
 .nav-links {
@@ -62,6 +82,7 @@ nav {
   align-items: center;
   gap: 2px;
   flex: 1;
+  
 }
 
 .nav-link {
@@ -71,7 +92,7 @@ nav {
   gap: 8px;
   padding: 8px 16px;
   border-radius: 10px;
-  color: var(--muted);
+  color: white;
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
@@ -79,13 +100,14 @@ nav {
   border: none;
   background: transparent;
   font-family: inherit;
+  font-weight: bold;
   white-space: nowrap;
   text-decoration: none;
 }
 
 .nav-link svg { flex-shrink: 0; transition: transform 0.2s; }
-.nav-link:hover { color: var(--text); background: var(--surface2); }
-.nav-link.active { color: var(--text); background: var(--surface2); }
+.nav-link:hover {   color: white;; background: var(--surface2); }
+.nav-link.active {   color: white;; background: var(--surface2); }
 
 .nav-link.active::after {
   content: '';
@@ -105,6 +127,7 @@ nav {
 /* ── DROPDOWN ── */
 .dropdown-wrapper {
   position: relative;
+
 }
 
 .dropdown {
@@ -145,7 +168,7 @@ nav {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--muted);
+  color: white;
   padding: 6px 12px 4px;
 }
 
@@ -158,7 +181,7 @@ nav {
   cursor: pointer;
   transition: background 0.15s;
   text-decoration: none;
-  color: var(--text);
+  color: white;
 }
 
 .dropdown-item:hover { background: var(--surface2); }
@@ -172,13 +195,13 @@ nav {
 }
 
 .dropdown-item .item-label { font-size: 0.875rem; font-weight: 500; }
-.dropdown-item .item-sub { font-size: 0.75rem; color: var(--muted); margin-top: 1px; }
+.dropdown-item .item-sub { font-size: 0.75rem;   color: white; margin-top: 1px; }
 .dropdown-item .item-danger { color: #ff7070; }
 
 .dropdown-divider { height: 1px; background: var(--border); margin: 6px 0; }
 
 /* Icon background colors */
-.ic-blue   { background: rgba(61,142,248,0.15);  color: var(--accent); }
+.ic-blue   { background: rgba(61,142,248,0.15);    color: white;; }
 .ic-green  { background: rgba(34,217,155,0.15);  color: var(--green); }
 .ic-purple { background: rgba(91,95,232,0.15);   color: #8b8ff0; }
 .ic-orange { background: rgba(255,165,50,0.15);  color: #ffa632; }
@@ -197,7 +220,7 @@ nav {
   border-radius: 10px;
   border: 1px solid var(--border);
   background: var(--surface);
-  color: var(--muted);
+  color: white;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
   transition: color 0.2s, background 0.2s, border-color 0.2s;
@@ -205,7 +228,7 @@ nav {
 }
 
 .nav-icon-btn:hover {
-  color: var(--text);
+  color: white;
   background: var(--surface2);
   border-color: rgba(255,255,255,0.12);
 }
@@ -226,7 +249,8 @@ nav {
   background: var(--surface);
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s;
-  color: var(--text);
+  color: white;
+  
 }
 
 .avatar-btn:hover {
@@ -243,9 +267,10 @@ nav {
   font-weight: 700;
   font-size: 0.7rem;
   color: #fff;
+  
 }
 
-.avatar-name { font-size: 0.82rem; font-weight: 500; }
+.avatar-name { font-size: 0.82rem;   font-weight: bold; }
 
 .avatar-btn .chevron {
   width: 14px; height: 14px;

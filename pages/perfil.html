@@ -4,14 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil de Estudiante</title>
-    <link rel="stylesheet" href="../styles/perfil.css">
+    <link rel="stylesheet" href="/styles/perfil.css">
 </head>
 <body>
+
+    <nav>
+        <a class="nav-brand" href="#">
+        <img src="/media/logo.png">
+          <div class="logo-icon" >
+            ACADEMIA ABC
+          </div>
+       
+        </a>
+      
+        <div class="nav-links">
+      
+          <!-- apartado de Docentes -->
+          <div class="dropdown-wrapper">
+            <button class="nav-link" id="btn-docentes" onclick="toggleDropdown('docentes')">
+              Docentes
+            </button>
+          </div>
+      
+          <!-- Directivos -->
+          <div class="dropdown-wrapper">
+            <button class="nav-link" id="btn-directivos" onclick="toggleDropdown('directivos')">
+              Directivos
+            </div>
+          </div>
+      
+          <!-- Cursos -->
+          <div class="dropdown-wrapper">
+            <button class="nav-link active" id="btn-cursos" onclick="toggleDropdown('cursos')">
+              Cursos
+            </button>
+            <div class="dropdown" id="dropdown-cursos">
+              <div class="dropdown-header">Opciones</div>
+              <a class="dropdown-item" href="#">
+                <div><div class="item-label">Explorar cursos</div><div class="item-sub">Todos los disponibles</div></div>
+              </a>
+              <a class="dropdown-item" href="#">
+                <div><div class="item-label">matriculados</div><div class="item-sub">5 cursos activos</div></div>
+              </a>
+              <a class="dropdown-item" href="#">
+                <div><div class="item-label">editar</div><div class="item-sub">editor de cursos</div></div>
+              </a>
+            </div>
+          </div>
+      
+        </div>
+      
+          <!-- Perfil -->
+          <div class="dropdown-wrapper">
+            <button class="avatar-btn" id="btn-perfil">
+              <span class="avatar-name">Jhon Doe</span>
+              <svg class="chevron" style="margin-left:4px" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown dropdown-right" id="dropdown-perfil">
+              <div class="dropdown-header">Mi cuenta</div>
+              <a class="dropdown-item" href="#">
+                <div class="item-icon ic-blue">👤</div>
+                <div><div class="item-label">Mi perfil</div><div class="item-sub">Datos personales</div></div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">
+                <div><div class="item-label item-danger">Cerrar sesión</div></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+
     <div class="container">
         <header class="profile-header">
-            <div class="banner"></div>
             <div class="profile-pic-container">
-                <img src="" alt="Profile" id="display-pic">
+                <img src="/media/logo.png" alt="Profile" id="display-pic">
             </div>
             <h2 id="display-name">Juan Pérez</h2>
             <p id="display-role">Estudiante de Ciencias de la Computación</p>
@@ -65,6 +133,6 @@
             <button type="submit" class="save-btn">Guardar Cambios</button>
         </form>
     </div>
-    <script src="../scripts/perfil.js"></script>
+    <script src="/scripts/perfil.js"></script>
 </body>
 </html>

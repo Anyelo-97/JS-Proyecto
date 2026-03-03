@@ -1,3 +1,9 @@
+@import url(/styles/menu.css);
+
+*{
+    font-weight: bold;
+}
+
 :root {
     --bg-color: #f8f9fa;
     --card-bg: #ffffff;
@@ -6,36 +12,31 @@
     --border-color: #edf2f7;
 }
 
+
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: var(--bg-color);
     margin: 0;
     padding: 20px;
+    color: white;
 }
 
 .container {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 5vw auto;
 }
 
-/* Header */
+
 .profile-header {
+    height: 200px;
     text-align: center;
-    background: white;
-    border-radius: 12px 12px 0 0;
+    border-radius: 10px;
     overflow: hidden;
-    padding-bottom: 20px;
+    background: #1C1678;
+    background: linear-gradient(166deg, rgba(28, 22, 120, 1) 0%, rgba(132, 123, 255, 1) 75%, rgba(123, 201, 255, 1) 100%);
     margin-bottom: 20px;
 }
 
-.banner {
-    height: 100px;
-    background: linear-gradient(to right, #3182ce, #2c5282);
-}
 
-.profile-pic-container {
-    margin-top: -50px;
-}
 
 .profile-pic-container img {
     width: 100px;
@@ -43,26 +44,29 @@ body {
     border-radius: 50%;
     border: 4px solid white;
     background: #eee;
+    margin-top: 20px;
 }
 
-/* Tarjetas */
+
 .card {
-    background: white;
+    background: #1C1678;
+    background: linear-gradient(166deg, rgba(28, 22, 120, 1) 0%, rgba(132, 123, 255, 1) 75%, rgba(123, 201, 255, 1) 100%);
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     margin-bottom: 20px;
+    width: 100%;
+    border: none;
 }
 
 h3 {
-    color: #2d3748;
     margin-top: 0;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 10px;
     font-size: 1.1rem;
 }
 
-/* Grid */
+
 .grid-layout {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -72,7 +76,7 @@ h3 {
 
 .input-group label {
     display: block;
-    color: var(--text-muted);
+
     font-size: 0.85rem;
     margin-bottom: 8px;
 }
