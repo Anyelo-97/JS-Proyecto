@@ -16,7 +16,7 @@
 }
 
 .container-extra img{
-    width: 100%;
+    width: 95%;
     height: 100%;
 }
 
@@ -44,6 +44,43 @@ input{
     border-radius: 10px;
 }
 
+.select{
+    width: 100%;
+    max-width: 320px;
+    height: 40px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.1); /* ligero transparente para armonizar con fondo */
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: auto;
+    text-align: center;
+}
+
+.select:hover{
+    border-color: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.15);
+}
+
+.select:focus{
+    border-color: #fff;
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.select option {
+    background-color: #060047; /* degradado no funciona en option, se usa color sólido */
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    text-align: center;
+}
+
 button{
     width: 90px;
     height: 40px;
@@ -61,19 +98,65 @@ button:hover{
 }
 
 button:active{
+
     opacity: 70%;
-    transform:scaleZ(10px ) ;
+    transform:scaleZ(0.96) ;
     transform: translateY(0px);
+}
+
+button:disabled{
+    cursor: not-allowed;
+    opacity: 30%;
 }
 
 a{
     margin: auto;
     text-decoration: none;
     color: white;
+
+}
+
+a:any-link{
+    transition-delay: 5s;
 }
 
 @media (min-width:2500px){
     .container{
         width: 30%;
+    }
+
+}
+
+@media (max-width:800px){
+
+    .container{
+        width: 80%;
+        display: flex;
+    }
+
+    input{
+        width: 60vw;
+    }
+
+    .container-extra img{
+        display: hidden;
+        display: none;
+    }
+}
+
+@media (max-width:400px){
+
+    .container{
+        width: 80%;
+        display: flex;
+    }
+
+    input{
+        width: 60vw;
+    }
+
+    .container-extra img{
+        display: hidden;
+        display: none;
     }
 }
