@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Docentes · Academia ABC</title>
+    <link rel="stylesheet" href="../styles/menu.css">
+    <link rel="stylesheet" href="../styles/docentes.css">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop"></div>
+
+<nav>
+    <a class="nav-brand" href="#">
+        <img src="../media/logo.png">
+        <div class="logo-icon">ACADEMIA ABC</div>
+    </a>
+    <div class="nav-links">
+        <div class="dropdown-wrapper">
+            <button class="nav-link active" id="btn-docentes" onclick="toggleDropdown('docentes')">
+                Docentes
+                <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown" id="dropdown-docentes">
+                <div class="dropdown-header">Docentes</div>
+                <a class="dropdown-item" href="docentes.html">
+                    <div class="item-icon ic-blue">👨‍🏫</div>
+                    <div><div class="item-label">Gestión docentes</div><div class="item-sub">Crear, editar, eliminar</div></div>
+                </a>
+            </div>
+        </div>
+        <div class="dropdown-wrapper">
+            <button class="nav-link" id="btn-directivos" onclick="toggleDropdown('directivos')">Directivos</button>
+        </div>
+        <div class="dropdown-wrapper">
+            <button class="nav-link" id="btn-cursos" onclick="toggleDropdown('cursos')">Cursos</button>
+            <div class="dropdown" id="dropdown-cursos">
+                <div class="dropdown-header">Opciones</div>
+                <a class="dropdown-item" href="#"><div class="item-icon ic-blue">📚</div><div><div class="item-label">Explorar cursos</div><div class="item-sub">Todos los disponibles</div></div></a>
+                <a class="dropdown-item" href="#"><div class="item-icon ic-green">✅</div><div><div class="item-label">Matriculados</div><div class="item-sub">5 cursos activos</div></div></a>
+                <a class="dropdown-item" href="#"><div class="item-icon ic-purple">✏️</div><div><div class="item-label">Editar</div><div class="item-sub">Editor de cursos</div></div></a>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-wrapper">
+        <button class="avatar-btn" id="btn-perfil" onclick="toggleDropdown('perfil')">
+            <span class="avatar-name">Jhon Doe</span>
+            <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown dropdown-right" id="dropdown-perfil">
+            <div class="dropdown-header">Mi cuenta</div>
+            <a class="dropdown-item" href="perfil.html">
+                <div class="item-icon ic-blue">👤</div>
+                <div><div class="item-label">Mi perfil</div><div class="item-sub">Datos personales</div></div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#"><div><div class="item-label item-danger">Cerrar sesión</div></div></a>
+        </div>
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <div class="page-header">
+        <div class="page-header-left">
+            <div class="page-header-icon">👨‍🏫</div>
+            <div>
+                <h1>Gestión de Docentes</h1>
+                <p>Administra el registro de docentes de la institución</p>
+            </div>
+        </div>
+        <button class="btn-primary" onclick="openModal()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nuevo Docente
+        </button>
+    </div>
+
+    <!--info -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-icon"></div>
+            <div class="stat-info">
+                <span class="stat-value" id="stat-total">0</span>
+                <span class="stat-label">Total docentes</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"></div>
+            <div class="stat-info">
+                <span class="stat-value" id="stat-areas">0</span>
+                <span class="stat-label">Áreas activas</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"></div>
+            <div class="stat-info">
+                <span class="stat-value" id="stat-new">0</span>
+                <span class="stat-label">Nuevos este mes</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="search-wrapper">
+            <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="search-input" placeholder="Buscar por nombre, código, correo…" oninput="renderTable()">
+        </div>
+        <div class="filter-group">
+            <select id="filter-area" onchange="renderTable()">
+                <option value="">Todas las áreas</option>
+                <option>Coding</option>
+                <option>Matemáticas</option>
+                <option>Ser</option>
+                <option>DiseñoGrafico</option>
+                <option>Inglés</option>
+                <option></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <div class="table-wrapper">
+            <table id="docentes-table">
+                <thead>
+                    <tr>
+                        <th>Docente</th>
+                        <th>Código</th>
+                        <th>Identificación</th>
+                        <th>Correo</th>
+                        <th>Área académica</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </div>
+        <div class="table-empty" id="table-empty" style="display:none;">
+            <div class="empty-icon">🔍</div>
+            <p>No se encontraron docentes</p>
+            <span>Intenta cambiar los filtros o agrega un nuevo docente</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- ── Modal ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="modal-title">
+                <div>
+                    <h2 id="modal-heading">Nuevo Docente</h2>
+                    <p id="modal-subheading">Completa los datos para registrar un docente</p>
+                </div>
+            </div>
+            <button class="modal-close" onclick="closeModal()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        <form id="docente-form" onsubmit="handleSubmit(event)">
+            <input type="hidden" id="edit-id">
+
+            <div class="avatar-preview-row">
+                <div class="doc-avatar-lg" id="avatar-preview">
+                    <span id="avatar-initials">?</span>
+                    <img id="avatar-img" src="" alt="" style="display:none">
+                </div>
+                <div class="avatar-preview-info">
+                    <p>La foto se cargará automáticamente desde la URL</p>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="field-group">
+                    <label for="f-codigo">Código <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M8 10h.01M8 14h.01M12 10h4M12 14h4"/></svg>
+                        <input type="text" id="f-codigo" name="codigo" placeholder="DOC-001" required>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="f-identificacion">Identificación <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <input type="text" id="f-identificacion" name="identificacion" placeholder="123456789" required>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="f-nombres">Nombres <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        <input type="text" id="f-nombres" name="nombres" placeholder="Juan Carlos" required oninput="updateAvatarPreview()">
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="f-apellidos">Apellidos <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        <input type="text" id="f-apellidos" name="apellidos" placeholder="García López" required oninput="updateAvatarPreview()">
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="f-email">Correo electrónico <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+                        <input type="email" id="f-email" name="email" placeholder="docente@academia.edu.co" required>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="f-area">Área académica <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422A12 12 0 0122 12c0 3.86-4.48 7-10 7S2 15.86 2 12c0-.538.09-1.06.26-1.562L12 14z"/></svg>
+                        <select id="f-area" name="area" required>
+                            <option value="">Selecciona un área</option>
+                            <option>Coding</option>
+                            <option>Matemáticas</option>
+                            <option>Ser</option>
+                            <option>DiseñoGrafico</option>
+                            <option>Inglés</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field-group field-full">
+                    <label for="f-foto">URL de foto</label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                        <input type="url" id="f-foto" name="foto" placeholder="" oninput="updateAvatarPreview()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn-primary" id="submit-btn">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span id="submit-label">Guardar docente</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-overlay" id="confirm-overlay" onclick="handleConfirmOverlay(event)">
+    <div class="modal modal-sm" id="confirm-modal">
+        <div class="confirm-icon">🗑️</div>
+        <h3>¿Eliminar docente?</h3>
+        <p id="confirm-text">Esta acción no se puede deshacer.</p>
+        <div class="modal-actions">
+            <button class="btn-secondary" onclick="closeConfirm()">Cancelar</button>
+            <button class="btn-danger" id="confirm-delete-btn">Eliminar</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../scripts/docentes.js"></script>
+</body>
+</html>
