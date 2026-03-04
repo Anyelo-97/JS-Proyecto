@@ -16,7 +16,7 @@
 }
 
 .container-extra img{
-    width: 100%;
+    width: 95%;
     height: 100%;
 }
 
@@ -76,10 +76,50 @@ a{
     margin: auto;
     text-decoration: none;
     color: white;
+
+}
+
+a:any-link{
+    transition-delay: 5s;
 }
 
 @media (min-width:2500px){
     .container{
         width: 30%;
+    }
+
+}
+
+@media (max-width:800px){
+
+    .container{
+        width: 80%;
+        display: flex;
+    }
+
+    input{
+        width: 60vw;
+    }
+
+    .container-extra img{
+        display: hidden;
+        display: none;
+    }
+}
+
+@media (max-width:400px){
+
+    .container{
+        width: 80%;
+        display: flex;
+    }
+
+    input{
+        width: 60vw;
+    }
+
+    .container-extra img{
+        display: hidden;
+        display: none;
     }
 }
