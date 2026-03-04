@@ -1,4 +1,16 @@
 let currentOpen = null;
+const avatarName = document.getElementById('avatar-name');
+const savedData = JSON.parse(localStorage.getItem('user'));
+
+if (savedData) {
+  Object.keys(savedData).forEach(key => {
+      const input = document.getElementById(key);
+      if (input) {
+          input.value = savedData[key];
+      }
+  });
+  avatarName.textContent = savedData.named;
+}
 
 /**
  * Abre o cierra un dropdown por su ID.
