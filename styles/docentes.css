@@ -1,24 +1,26 @@
+/* ── DOCENTES PAGE STYLES ── */
+
 :root {
-    --primary: #1C3480;
-    --primary-light: #3858ad;
-    --primary-lighter: #ebecf0;
-    --accent: #3a5ab9;
-    --accent-glow: rgba(79,123,255,0.22);
-    --danger: #ef4444;
-    --danger-light: #efecec;
-    --danger-glow: rgba(239,68,68,0.2);
-    --success: #22c55e;
-    --success-light: #f7f9f7;
-    --bg: #f2f4fa;
-    --surface: #ededed;
-    --surface2: #2547ac;
-    --border: rgba(44,82,160,0.12);
-    --border-focus: #4F7BFF;
-    --text: #070707;
-    --text-muted: #1b1b1d;
-    --radius: 16px;
-    --shadow: 0 2px 16px rgba(28,52,128,0.08);
-    --shadow-lg: 0 8px 40px rgba(28,52,128,0.14);
+    --primary:        #1C3480;
+    --primary-light:  #3858ad;
+    --primary-lighter:#eef1fb;
+    --accent:         #4F7BFF;
+    --accent-glow:    rgba(79,123,255,0.22);
+    --danger:         #ef4444;
+    --danger-light:   #fef2f2;
+    --danger-glow:    rgba(239,68,68,0.2);
+    --success:        #22c55e;
+    --success-light:  #f0fdf4;
+    --bg:             #f2f4fa;
+    --surface:        #ffffff;       /* FIX: era #ededed (gris), inputs ahora blancos */
+    --surface2:       #f7f9ff;       /* FIX: era #2547ac (azul oscuro) → texto invisible en tabla/inputs */
+    --border:         rgba(44,82,160,0.12);
+    --border-focus:   #4F7BFF;
+    --text:           #1a2340;       /* FIX: era #070707 casi negro puro */
+    --text-muted:     #6b7fa8;       /* FIX: era #1b1b1d → invisible sobre fondos oscuros */
+    --radius:         16px;
+    --shadow:         0 2px 16px rgba(28,52,128,0.08);
+    --shadow-lg:      0 8px 40px rgba(28,52,128,0.14);
 }
 
 body {
@@ -33,7 +35,6 @@ body {
 
 * { box-sizing: border-box; }
 
-/* ── PAGE WRAPPER ── */
 .page-wrapper {
     max-width: 1100px;
     margin: 0 auto;
@@ -85,7 +86,7 @@ body {
     font-weight: 400;
 }
 
-/* ── estado ── */
+/* ── STATS ── */
 .stats-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -108,7 +109,6 @@ body {
 .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 
 .stat-icon { font-size: 1.5rem; flex-shrink: 0; }
-
 .stat-info { display: flex; flex-direction: column; }
 
 .stat-value {
@@ -187,7 +187,7 @@ body {
     box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
-/* ── Tabla ── */
+/* ── TABLE ── */
 .table-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -196,9 +196,7 @@ body {
     overflow: hidden;
 }
 
-.table-wrapper {
-    overflow-x: auto;
-}
+.table-wrapper { overflow-x: auto; }
 
 table {
     width: 100%;
@@ -207,7 +205,7 @@ table {
 }
 
 thead tr {
-    background: var(--surface2);
+    background: var(--primary-lighter); /* FIX: era surface2 (#2547ac) → encabezados ilegibles */
     border-bottom: 1.5px solid var(--border);
 }
 
@@ -216,7 +214,7 @@ thead th {
     text-align: left;
     font-size: 0.72rem;
     font-weight: 700;
-    color: var(--text-muted);
+    color: var(--primary);            /* FIX: era text-muted sobre azul oscuro */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
@@ -228,8 +226,7 @@ tbody tr {
 }
 
 tbody tr:last-child { border-bottom: none; }
-
-tbody tr:hover { background: var(--surface2); }
+tbody tr:hover { background: var(--primary-lighter); }  /* FIX: era surface2 azul */
 
 tbody td {
     padding: 14px 16px;
@@ -237,7 +234,7 @@ tbody td {
     vertical-align: middle;
 }
 
-/* ── Docente  (foto + nombre) ── */
+/* ── DOCENTE CELL ── */
 .doc-cell {
     display: flex;
     align-items: center;
@@ -255,7 +252,7 @@ tbody td {
     font-family: 'Sora', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
-    color: rgb(23, 19, 19);
+    color: white;                     /* FIX: era rgb(23,19,19) casi negro sobre azul */
     flex-shrink: 0;
     overflow: hidden;
     border: 2px solid var(--border);
@@ -281,7 +278,7 @@ tbody td {
     margin-top: 1px;
 }
 
-/* ── Area simbolo ── */
+/* ── AREA BADGE ── */
 .area-badge {
     display: inline-flex;
     align-items: center;
@@ -305,7 +302,7 @@ tbody td {
     height: 34px;
     border-radius: 8px;
     border: 1.5px solid var(--border);
-    background: rgb(116, 134, 235);
+    background: white;               /* FIX: era rgb(116,134,235) azul visible todo el tiempo */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -328,7 +325,7 @@ tbody td {
     color: var(--danger);
 }
 
-/* ── estado vacio ── */
+/* ── EMPTY STATE ── */
 .table-empty {
     padding: 60px 24px;
     text-align: center;
@@ -349,7 +346,7 @@ tbody td {
     color: var(--text-muted);
 }
 
-/* ── Botones ── */
+/* ── BUTTONS ── */
 .btn-primary {
     display: inline-flex;
     align-items: center;
@@ -384,7 +381,7 @@ tbody td {
     transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.btn-secondary:hover { background: var(--surface2); border-color: var(--accent); color: var(--primary); }
+.btn-secondary:hover { background: var(--primary-lighter); border-color: var(--accent); color: var(--primary); }
 
 .btn-danger {
     padding: 10px 22px;
@@ -402,7 +399,7 @@ tbody td {
 
 .btn-danger:hover { transform: translateY(-1px); background: #dc2626; }
 
-
+/* ── MODAL ── */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -424,7 +421,7 @@ tbody td {
 }
 
 .modal {
-    background: rgb(240, 234, 234);
+    background: white;               /* FIX: era rgb(240,234,234) rosado */
     border-radius: var(--radius);
     box-shadow: 0 24px 80px rgba(10,18,50,0.28);
     width: 100%;
@@ -509,7 +506,7 @@ tbody td {
     height: 34px;
     border-radius: 8px;
     border: 1.5px solid var(--border);
-    background: rgb(248, 244, 244);
+    background: white;               /* FIX: era rgb(248,244,244) rosado */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -521,7 +518,7 @@ tbody td {
 
 .modal-close:hover { background: var(--danger-light); color: var(--danger); }
 
-
+/* Avatar preview */
 .avatar-preview-row {
     display: flex;
     align-items: center;
@@ -542,7 +539,7 @@ tbody td {
     font-family: 'Sora', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
-    color: rgb(234, 226, 226);
+    color: white;                    /* FIX: era rgb(234,226,226) rosado sobre azul */
     flex-shrink: 0;
     overflow: hidden;
     border: 3px solid var(--border);
@@ -591,9 +588,7 @@ form { padding: 0 28px; }
 
 .required { color: var(--danger); }
 
-.input-wrapper {
-    position: relative;
-}
+.input-wrapper { position: relative; }
 
 .input-icon {
     position: absolute;
@@ -610,7 +605,7 @@ form { padding: 0 28px; }
     padding: 10px 12px 10px 34px;
     border: 1.5px solid var(--border);
     border-radius: 10px;
-    background: var(--surface2);
+    background: var(--surface2);    /* surface2 ahora es #f7f9ff claro */
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;
@@ -620,12 +615,12 @@ form { padding: 0 28px; }
     -webkit-appearance: none;
 }
 
-.input-wrapper input::placeholder { color: #c2cada; font-weight: 400; }
+.input-wrapper input::placeholder { color: #b0bcd4; font-weight: 400; }
 
 .input-wrapper input:focus,
 .input-wrapper select:focus {
     border-color: var(--border-focus);
-    background: rgb(234, 229, 229);
+    background: white;
     box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
@@ -641,7 +636,7 @@ form { padding: 0 28px; }
     padding: 0;
 }
 
-
+/* ── TOAST ── */
 .toast {
     position: fixed;
     bottom: 28px;
@@ -662,19 +657,19 @@ form { padding: 0 28px; }
     max-width: 320px;
 }
 
-.toast.show { opacity: 1; transform: translateY(0); }
+.toast.show   { opacity: 1; transform: translateY(0); }
 .toast.success { background: var(--primary); color: white; }
-.toast.error { background: var(--danger); color: white; }
+.toast.error   { background: var(--danger); color: white; }
 
+/* ── AREA BADGE COLORS ── */
+.area-Coding        { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+.area-Matemáticas   { background: #faf5ff; color: #7c3aed; border: 1px solid #e9d5ff; }
+.area-Ser           { background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; }
+.area-DiseñoGrafico { background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
+.area-Inglés        { background: #ecfeff; color: #0891b2; border: 1px solid #a5f3fc; }
+.area-default       { background: var(--primary-lighter); color: var(--primary); border: 1px solid rgba(79,123,255,0.2); }
 
-.area-Coding     { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
-.area-Matemáticas     { background: #faf5ff; color: #7c3aed; border: 1px solid #e9d5ff; }
-.area-Ser       { background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; }
-.area-DiseñoGrafico            { background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
-.area-default         { background: var(--primary-lighter); color: var(--primary); border: 1px solid rgba(79,123,255,0.2); }
-.area-Inglés          { background: #ecfeff; color: #0891b2; border: 1px solid #a5f3fc; }
-
-
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
     .page-wrapper { padding: 20px 14px 48px; }
     .stats-row { grid-template-columns: 1fr 1fr; }

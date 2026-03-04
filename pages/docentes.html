@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Docentes · Academia ABC</title>
-    <link rel="stylesheet" href="/styles/menu.css">
-    <link rel="stylesheet" href="/styles/docentes.css">
+    <link rel="stylesheet" href="../styles/menu.css">
+    <link rel="stylesheet" href="../styles/docentes.css">
 </head>
 <body>
 
@@ -26,7 +25,6 @@
             <div class="dropdown" id="dropdown-docentes">
                 <div class="dropdown-header">Docentes</div>
                 <a class="dropdown-item" href="docentes.html">
-                    <div class="item-icon ic-blue">👨‍🏫</div>
                     <div><div class="item-label">Gestión docentes</div><div class="item-sub">Crear, editar, eliminar</div></div>
                 </a>
             </div>
@@ -46,6 +44,7 @@
     </div>
     <div class="dropdown-wrapper">
         <button class="avatar-btn" id="btn-perfil" onclick="toggleDropdown('perfil')">
+            <div class="avatar">JD</div>
             <span class="avatar-name">Jhon Doe</span>
             <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
@@ -76,24 +75,23 @@
         </button>
     </div>
 
-    <!--info -->
     <div class="stats-row">
         <div class="stat-card">
-            <div class="stat-icon"></div>
+            <div class="stat-icon">👨‍🏫</div>
             <div class="stat-info">
                 <span class="stat-value" id="stat-total">0</span>
                 <span class="stat-label">Total docentes</span>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon"></div>
+            <div class="stat-icon">🎓</div>
             <div class="stat-info">
                 <span class="stat-value" id="stat-areas">0</span>
                 <span class="stat-label">Áreas activas</span>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon"></div>
+            <div class="stat-icon">🆕</div>
             <div class="stat-info">
                 <span class="stat-value" id="stat-new">0</span>
                 <span class="stat-label">Nuevos este mes</span>
@@ -101,7 +99,6 @@
         </div>
     </div>
 
-    <!-- Toolbar -->
     <div class="toolbar">
         <div class="search-wrapper">
             <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -115,7 +112,6 @@
                 <option>Ser</option>
                 <option>DiseñoGrafico</option>
                 <option>Inglés</option>
-                <option></option>
             </select>
         </div>
     </div>
@@ -133,8 +129,7 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="table-body">
-                </tbody>
+                <tbody id="table-body"></tbody>
             </table>
         </div>
         <div class="table-empty" id="table-empty" style="display:none;">
@@ -143,14 +138,14 @@
             <span>Intenta cambiar los filtros o agrega un nuevo docente</span>
         </div>
     </div>
-
 </div>
 
-<!-- ── Modal ── -->
+<!-- ── crear y editar los modales señor anyelo ── -->
 <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
     <div class="modal" id="modal">
         <div class="modal-header">
             <div class="modal-title">
+                <div class="modal-icon" id="modal-icon">➕</div>
                 <div>
                     <h2 id="modal-heading">Nuevo Docente</h2>
                     <p id="modal-subheading">Completa los datos para registrar un docente</p>
@@ -228,7 +223,7 @@
                     <label for="f-foto">URL de foto</label>
                     <div class="input-wrapper">
                         <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-                        <input type="url" id="f-foto" name="foto" placeholder="" oninput="updateAvatarPreview()">
+                        <input type="url" id="f-foto" name="foto" placeholder="https://ejemplo.com/foto.jpg" oninput="updateAvatarPreview()">
                     </div>
                 </div>
             </div>
@@ -258,6 +253,6 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="/scripts/docentes.js"></script>
+<script src="../scripts/docentes.js"></script>
 </body>
 </html>
