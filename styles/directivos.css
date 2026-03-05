@@ -10,8 +10,7 @@
     --danger-light:   #fef2f2;
     --danger-glow:    rgba(239,68,68,0.2);
     --bg:             #f2f4fa;
-    --surface:        #ffffff;
-    --surface2:       #f8f7ff;
+
     --border:         rgba(90,70,180,0.12);
     --border-focus:   #7C5CFC;
     --text:           #1a1a30;
@@ -85,7 +84,7 @@ body {
 }
 
 .stat-card {
-    background: var(--surface);
+    background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 16px 20px;
@@ -129,7 +128,7 @@ body {
     padding: 10px 14px 10px 38px;
     border: 1.5px solid var(--border);
     border-radius: 10px;
-    background: var(--surface);
+    background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;
@@ -146,7 +145,7 @@ body {
     padding: 10px 14px;
     border: 1.5px solid var(--border);
     border-radius: 10px;
-    background: var(--surface);
+    background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;
@@ -164,7 +163,7 @@ body {
 
 /* tabla diseño */
 .table-card {
-    background: var(--surface);
+    background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -175,7 +174,7 @@ body {
 
 table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
 
-thead tr { background: var(--surface2); border-bottom: 1.5px solid var(--border); }
+thead tr { background: var(--bg); border-bottom: 1.5px solid var(--border); }
 
 thead th {
     padding: 13px 16px;
@@ -190,7 +189,7 @@ thead th {
 
 tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
 tbody tr:last-child { border-bottom: none; }
-tbody tr:hover { background: var(--surface2); }
+tbody tr:hover { background: var(--bg); }
 tbody td { padding: 14px 16px; color: var(--text); vertical-align: middle; }
 
 /* avatar de los directivos*/
@@ -207,7 +206,7 @@ tbody td { padding: 14px 16px; color: var(--text); vertical-align: middle; }
     font-family: 'Sora', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
-    color: white;
+    color: black;
     flex-shrink: 0;
     border: 2px solid var(--border);
 }
@@ -251,7 +250,7 @@ tbody td { padding: 14px 16px; color: var(--text); vertical-align: middle; }
 }
 
 .btn-icon:hover { transform: translateY(-1px); }
-.btn-icon.edit:hover   { background: var(--surface2); border-color: var(--accent); color: var(--accent); }
+.btn-icon.edit:hover   { background: var(--bg); border-color: var(--accent); color: var(--accent); }
 .btn-icon.delete:hover { background: var(--danger-light); border-color: var(--danger); color: var(--danger); }
 
 /* ── ESTADO VACÍO ── */
@@ -286,7 +285,6 @@ tbody td { padding: 14px 16px; color: var(--text); vertical-align: middle; }
     padding: 10px 22px;
     border-radius: 10px;
     border: 1.5px solid var(--border);
-    background: white;
     color: var(--text-muted);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;
@@ -295,7 +293,7 @@ tbody td { padding: 14px 16px; color: var(--text); vertical-align: middle; }
     transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.btn-secondary:hover { background: var(--surface2); border-color: var(--accent); color: var(--accent); }
+.btn-secondary:hover { background: var(--bg); border-color: var(--accent); color: var(--accent); }
 
 .btn-danger {
     padding: 10px 22px;
@@ -414,7 +412,7 @@ tbody td { padding: 14px 16px; color: var(--text); vertical-align: middle; }
     font-family: 'Sora', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
-    color: white;
+    color: black;
     flex-shrink: 0;
     border: 3px solid rgba(124,92,252,0.2);
     box-shadow: 0 4px 16px var(--accent-glow);
@@ -456,7 +454,7 @@ form { padding: 0 28px; }
     padding: 10px 12px 10px 34px;
     border: 1.5px solid var(--border);
     border-radius: 10px;
-    background: var(--surface2);
+    background: var(--bg);
     color: var(--text);
     font-family: 'DM Sans', sans-serif;
     font-size: 0.875rem;

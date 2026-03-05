@@ -13,6 +13,20 @@ let docentes = [];
 let editingId = null;
 let pendingDeleteId = null;
 
+const avatarName = document.getElementById('avatar-name');
+const savedData = JSON.parse(localStorage.getItem('user'));
+
+if (savedData) {
+  Object.keys(savedData).forEach(key => {
+      const input = document.getElementById(key);
+      if (input) {
+          input.value = savedData[key];
+      }
+  });
+}
+avatarName.textContent = savedData.named;
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const saved = localStorage.getItem(STORAGE_KEY);
     docentes = saved ? JSON.parse(saved) : [...SAMPLE_DATA];

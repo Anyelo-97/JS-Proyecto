@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('profileForm');
     const input = document.getElementById('nombre')
-    
+    const avatarName = document.getElementById('avatar-name');
+
     //Cargar datos del LocalStorage al iniciar
     const savedData = JSON.parse(localStorage.getItem('user'));
 
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 input.value = savedData[key];
             }
         });
+        avatarName.textContent = savedData.named;
         
      //Actualizar el nombre visual en el header
         document.getElementById('display-name').textContent = savedData.named;

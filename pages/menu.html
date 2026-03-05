@@ -11,68 +11,55 @@
 <div class="backdrop" id="backdrop"></div>
 
 <nav>
-  <a class="nav-brand" href="#">
-    <div class="logo-icon">
-        <img src="../media/logo.png">
-    </div>
-    <a class="dropdown-item" href="../pages/menu.html">ACADEMIA ABC</a>
+  <a class="nav-brand" href="/pages/menu.html">
+      <img src="../media/logo.png">
+      <div class="logo-icon"><a class="dropdown-item" href="../pages/menu.html">ACADEMIA ABC</a></div>
   </a>
-
   <div class="nav-links">
-
-    <!-- apartado de Docentes -->
-    <div class="dropdown-wrapper">
-      <button class="nav-link" id="btn-docentes" onclick="toggleDropdown('docentes')">
-        <a class="dropdown-item" href="../pages/docentes.html">Docentes</a>
-      </button>
-    </div>
-
-    <!-- Directivos -->
-    <div class="dropdown-wrapper">
-      <button class="nav-link" id="btn-directivos" onclick="toggleDropdown('directivos')">
-        <a class="dropdown-item" href="../pages/directivos.html">Directivos</a>
+      <div class="dropdown-wrapper">
+          <button class="nav-link active" id="btn-docentes" onclick="toggleDropdown('docentes')">
+              Docentes
+              <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dropdown" id="dropdown-docentes">
+              <div class="dropdown-header">Docentes</div>
+              <a class="dropdown-item" href="../pages/docentes.html">
+                  <div><div class="item-label">Gestión docentes</div><div class="item-sub">Crear, editar, eliminar</div></div>
+              </a>
+          </div>
       </div>
-    </div>
-
-    <!-- Cursos -->
-    <div class="dropdown-wrapper">
-      <button class="nav-link active" id="btn-cursos" onclick="toggleDropdown('cursos')">
-        Cursos
-      </button>
-      <div class="dropdown" id="dropdown-cursos">
-        <div class="dropdown-header">Opciones</div>
-        <a class="dropdown-item" href="#">
-          <div><div class="item-label">Explorar cursos</div><div class="item-sub">Todos los disponibles</div></div>
-        </a>
-        <a class="dropdown-item" href="#">
-          <div><div class="item-label">matriculados</div><div class="item-sub">5 cursos activos</div></div>
-        </a>
-        <a class="dropdown-item" href="#">
-          <div><div class="item-label">editar</div><div class="item-sub">editor de cursos</div></div>
-        </a>
+      <div class="dropdown-wrapper">
+          <button class="nav-link" id="btn-directivos" onclick="toggleDropdown('directivos')"><a class="dropdown-item" href="../pages/directivos.html">Directivos</a></button>
       </div>
-    </div>
-
+      <div class="dropdown-wrapper">
+          <a href="/pages/cursos.html">
+              <button class="nav-link active" id="btn-cursos" onclick="toggleDropdown('cursos')">
+                Cursos
+              </button>
+            </a>
+          <div class="dropdown" id="dropdown-cursos">
+              <div class="dropdown-header">Opciones</div>
+              <a class="dropdown-item" href="#"><div class="item-icon ic-blue">📚</div><div><div class="item-label">Explorar cursos</div><div class="item-sub">Todos los disponibles</div></div></a>
+              <a class="dropdown-item" href="#"><div class="item-icon ic-green">✅</div><div><div class="item-label">Matriculados</div><div class="item-sub">5 cursos activos</div></div></a>
+              <a class="dropdown-item" href="#"><div class="item-icon ic-purple">✏️</div><div><div class="item-label">Editar</div><div class="item-sub">Editor de cursos</div></div></a>
+          </div>
+      </div>
   </div>
-
-    <!-- Perfil -->
-    <div class="dropdown-wrapper">
-      <button class="avatar-btn" id="btn-perfil">
-        <span id="avatar-name" class="avatar-name"></span>
-        <svg class="chevron" style="margin-left:4px" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  <div class="dropdown-wrapper">
+      <button class="avatar-btn" id="btn-perfil" onclick="toggleDropdown('perfil')">
+          <div class="avatar"></div>
+          <span id="avatar-name" class="avatar-name"></span>
+          <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       <div class="dropdown dropdown-right" id="dropdown-perfil">
-        <div class="dropdown-header">Mi cuenta</div>
-        <a class="dropdown-item" href="../pages/perfil.html">
-          <div class="item-icon ic-blue">👤</div>
-          <div><div class="item-label">Mi perfil</div><div class="item-sub">Datos personales</div></div>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">
-          <div><div class="item-label item-danger">Cerrar sesión</div></div>
-        </a>
+          <div class="dropdown-header">Mi cuenta</div>
+          <a class="dropdown-item" href="../pages/perfil.html">
+              <div class="item-icon ic-blue">👤</div>
+              <div><div class="item-label">Mi perfil</div><div class="item-sub">Datos personales</div></div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/pages/login.html"><div><div class="item-label item-danger">Cerrar sesión</div></div></a>
       </div>
-    </div>
   </div>
 </nav>
 

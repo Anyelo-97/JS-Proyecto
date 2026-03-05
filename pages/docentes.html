@@ -4,60 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Docentes · Academia ABC</title>
-    <link rel="stylesheet" href="../styles/menu.css">
-    <link rel="stylesheet" href="../styles/docentes.css">
+    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="stylesheet" href="/styles/docentes.css">
 </head>
 <body>
 
 <div class="backdrop" id="backdrop"></div>
 
+
 <nav>
-    <a class="nav-brand" href="#">
-        <img src="../media/logo.png">
-        <div class="logo-icon"><a class="dropdown-item" href="../pages/menu.html">ACADEMIA ABC</a></div>
-    </a>
-    <div class="nav-links">
-        <div class="dropdown-wrapper">
-            <button class="nav-link active" id="btn-docentes" onclick="toggleDropdown('docentes')">
-                Docentes
-                <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="dropdown" id="dropdown-docentes">
-                <div class="dropdown-header">Docentes</div>
-                <a class="dropdown-item" href="../pages/docentes.html">
-                    <div><div class="item-label">Gestión docentes</div><div class="item-sub">Crear, editar, eliminar</div></div>
-                </a>
-            </div>
-        </div>
-        <div class="dropdown-wrapper">
-            <button class="nav-link" id="btn-directivos" onclick="toggleDropdown('directivos')"><a class="dropdown-item" href="../pages/directivos.html">Directivos</a></button>
-        </div>
-        <div class="dropdown-wrapper">
-            <button class="nav-link" id="btn-cursos" onclick="toggleDropdown('cursos')">Cursos</button>
-            <div class="dropdown" id="dropdown-cursos">
-                <div class="dropdown-header">Opciones</div>
-                <a class="dropdown-item" href="#"><div class="item-icon ic-blue">📚</div><div><div class="item-label">Explorar cursos</div><div class="item-sub">Todos los disponibles</div></div></a>
-                <a class="dropdown-item" href="#"><div class="item-icon ic-green">✅</div><div><div class="item-label">Matriculados</div><div class="item-sub">5 cursos activos</div></div></a>
-                <a class="dropdown-item" href="#"><div class="item-icon ic-purple">✏️</div><div><div class="item-label">Editar</div><div class="item-sub">Editor de cursos</div></div></a>
-            </div>
-        </div>
-    </div>
-    <div class="dropdown-wrapper">
-        <button class="avatar-btn" id="btn-perfil" onclick="toggleDropdown('perfil')">
-            <div class="avatar">JD</div>
-            <span class="avatar-name">Jhon Doe</span>
-            <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="dropdown dropdown-right" id="dropdown-perfil">
-            <div class="dropdown-header">Mi cuenta</div>
-            <a class="dropdown-item" href="../pages/perfil.html">
-                <div class="item-icon ic-blue">👤</div>
-                <div><div class="item-label">Mi perfil</div><div class="item-sub">Datos personales</div></div>
+  <a class="nav-brand" href="/pages/menu.html">
+      <img src="../media/logo.png">
+      <div class="logo-icon"><a class="dropdown-item" href="../pages/menu.html">ACADEMIA ABC</a></div>
+  </a>
+  <div class="nav-links">
+      <div class="dropdown-wrapper">
+          <button class="nav-link active" id="btn-docentes" onclick="toggleDropdown('docentes')">
+              Docentes
+              <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dropdown" id="dropdown-docentes">
+              <div class="dropdown-header">Docentes</div>
+              <a class="dropdown-item" href="../pages/docentes.html">
+                  <div><div class="item-label">Gestión docentes</div><div class="item-sub">Crear, editar, eliminar</div></div>
+              </a>
+          </div>
+      </div>
+      <div class="dropdown-wrapper">
+          <button class="nav-link" id="btn-directivos" onclick="toggleDropdown('directivos')"><a class="dropdown-item" href="../pages/directivos.html">Directivos</a></button>
+      </div>
+      <div class="dropdown-wrapper">
+          <a href="/pages/cursos.html">
+              <button class="nav-link active" id="btn-cursos" onclick="toggleDropdown('cursos')">
+                Cursos
+              </button>
             </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"><div><div class="item-label item-danger">Cerrar sesión</div></div></a>
-        </div>
-    </div>
+          <div class="dropdown" id="dropdown-cursos">
+              <div class="dropdown-header">Opciones</div>
+              <a class="dropdown-item" href="/pages/cursos.html"><div class="item-icon ic-blue">📚</div><div><div class="item-label">Explorar cursos</div><div class="item-sub">Todos los disponibles</div></div></a>
+              <a class="dropdown-item" href="#"><div class="item-icon ic-green">✅</div><div><div class="item-label">Matriculados</div><div class="item-sub">5 cursos activos</div></div></a>
+              <a class="dropdown-item" href="#"><div class="item-icon ic-purple">✏️</div><div><div class="item-label">Editar</div><div class="item-sub">Editor de cursos</div></div></a>
+          </div>
+      </div>
+  </div>
+  <div class="dropdown-wrapper">
+      <button class="avatar-btn" id="btn-perfil" onclick="toggleDropdown('perfil')">
+          <div class="avatar">JD</div>
+          <span id="avatar-name" class="avatar-name"></span>
+          <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="dropdown dropdown-right" id="dropdown-perfil">
+          <div class="dropdown-header">Mi cuenta</div>
+          <a class="dropdown-item" href="../pages/perfil.html">
+              <div class="item-icon ic-blue">👤</div>
+              <div><div class="item-label">Mi perfil</div><div class="item-sub">Datos personales</div></div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/pages/login.html"><div><div class="item-label item-danger">Cerrar sesión</div></div></a>
+      </div>
+  </div>
 </nav>
 
 <div class="page-wrapper">
@@ -253,6 +258,7 @@
 
 <div class="toast" id="toast"></div>
 
-<script src="../scripts/docentes.js"></script>
+
 </body>
+<script src="../scripts/docentes.js"></script>
 </html>

@@ -1,3 +1,16 @@
+const avatarName = document.getElementById('avatar-name');
+
+const savedData = JSON.parse(localStorage.getItem('user'));
+
+if (savedData) {
+  Object.keys(savedData).forEach(key => {
+    const input = document.getElementById(key);
+    if (input) input.value = savedData[key];
+  });
+  avatarName.textContent = savedData.named;
+}
+
+const rol = savedData?.rol;
 
 const STORAGE_KEY = 'academia_directivos';
 
