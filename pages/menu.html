@@ -13,9 +13,9 @@
 <nav>
   <a class="nav-brand" href="#">
     <div class="logo-icon">
-        <img src="/media/logo.png">
+        <img src="../media/logo.png">
     </div>
-    ACADEMIA ABC
+    <a class="dropdown-item" href="../pages/menu.html">ACADEMIA ABC</a>
   </a>
 
   <div class="nav-links">
@@ -23,14 +23,14 @@
     <!-- apartado de Docentes -->
     <div class="dropdown-wrapper">
       <button class="nav-link" id="btn-docentes" onclick="toggleDropdown('docentes')">
-        Docentes
+        <a class="dropdown-item" href="../pages/docentes.html">Docentes</a>
       </button>
     </div>
 
     <!-- Directivos -->
     <div class="dropdown-wrapper">
       <button class="nav-link" id="btn-directivos" onclick="toggleDropdown('directivos')">
-        Directivos
+        <a class="dropdown-item" href="../pages/directivos.html">Directivos</a>
       </div>
     </div>
 
@@ -63,7 +63,7 @@
       </button>
       <div class="dropdown dropdown-right" id="dropdown-perfil">
         <div class="dropdown-header">Mi cuenta</div>
-        <a class="dropdown-item" href="/pages/perfil.html">
+        <a class="dropdown-item" href="../pages/perfil.html">
           <div class="item-icon ic-blue">👤</div>
           <div><div class="item-label">Mi perfil</div><div class="item-sub">Datos personales</div></div>
         </a>
@@ -85,6 +85,15 @@
     <div class="card"><div class="card-icon">📚</div><div class="card-label">Cursos disponibles</div><div class="card-value">5</div></div>
     <div class="card"><div class="card-icon">👨🏻‍🏫</div><div class="card-label">Docentes</div><div class="card-value">6</div></div>
     <div class="card"><div class="card-icon">👨🏻‍💼</div><div class="card-label">Administrativos</div><div class="card-value">4</div></div>
+  </div>
+
+  <!-- Tarjeta de bienvenida a la pagina -->
+  <div class="welcome-card">
+    <div class="welcome-card-icon">🎓</div>
+    <div class="welcome-card-body">
+      <h2>¡Bienvenido a la plataforma de la <span>Academia ABC</span>!</h2>
+      <p>Donde <b>A</b>prendemos <b>B</b>asándonos en <b>C</b>ódigos.</p>
+    </div>
   </div>
 </main>
 
