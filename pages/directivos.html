@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Directivos · Academia ABC</title>
+    <link rel="stylesheet" href="../styles/menu.css">
+    <link rel="stylesheet" href="../styles/directivos.css">
+</head>
+<body>
+
+<div class="backdrop" id="backdrop"></div>
+
+<nav>
+    <a class="nav-brand" href="#">
+        <img src="../media/logo.png">
+        <div class="logo-icon">ACADEMIA ABC</div>
+    </a>
+    <div class="nav-links">
+        <div class="dropdown-wrapper">
+            <button class="nav-link" id="btn-docentes" onclick="toggleDropdown('docentes')">
+                Docentes
+                <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown" id="dropdown-docentes">
+                <div class="dropdown-header">Docentes</div>
+                <a class="dropdown-item" href="docentes.html">
+                    <div class="item-icon ic-blue">👨‍🏫</div>
+                    <div><div class="item-label">Gestión docentes</div><div class="item-sub">Crear, editar, eliminar</div></div>
+                </a>
+            </div>
+        </div>
+        <div class="dropdown-wrapper">
+            <button class="nav-link active" id="btn-directivos" onclick="toggleDropdown('directivos')">
+                Directivos
+                <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown" id="dropdown-directivos">
+                <div class="dropdown-header">Directivos</div>
+                <a class="dropdown-item" href="directivos.html">
+                    <div class="item-icon ic-purple">👨‍💼</div>
+                    <div><div class="item-label">Gestión directivos</div><div class="item-sub">Crear, editar, eliminar</div></div>
+                </a>
+            </div>
+        </div>
+        <div class="dropdown-wrapper">
+            <button class="nav-link" id="btn-cursos" onclick="toggleDropdown('cursos')">
+                Cursos
+                <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown" id="dropdown-cursos">
+                <div class="dropdown-header">Opciones</div>
+                <a class="dropdown-item" href="#"><div class="item-icon ic-blue"></div><div><div class="item-label">Explorar cursos</div><div class="item-sub">Todos los disponibles</div></div></a>
+                <a class="dropdown-item" href="#"><div class="item-icon ic-green"></div><div><div class="item-label">Matriculados</div><div class="item-sub">5 cursos activos</div></div></a>
+                <a class="dropdown-item" href="#"><div class="item-icon ic-purple"></div><div><div class="item-label">Editar</div><div class="item-sub">Editor de cursos</div></div></a>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown-wrapper">
+        <button class="avatar-btn" id="btn-perfil" onclick="toggleDropdown('perfil')">
+            <span class="avatar-name">Jhon Doe</span>
+            <svg class="chevron" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown dropdown-right" id="dropdown-perfil">
+            <div class="dropdown-header">Mi cuenta</div>
+            <a class="dropdown-item" href="perfil.html">
+                <div class="item-icon ic-blue">👤</div>
+                <div><div class="item-label">Mi perfil</div><div class="item-sub">Datos personales</div></div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#"><div><div class="item-label item-danger">Cerrar sesión</div></div></a>
+        </div>
+    </div>
+</nav>
+
+<!-- contenido de la pagina -->
+<div class="page-wrapper">
+
+    <!-- Encabezado -->
+    <div class="page-header">
+        <div class="page-header-left">
+            <div class="page-header-icon">👨‍💼</div>
+            <div>
+                <h1>Gestión de Directivos</h1>
+                <p>Administra el personal directivo de la institución</p>
+            </div>
+        </div>
+        <button class="btn-primary" onclick="openModal()">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nuevo Directivo
+        </button>
+    </div>
+
+    <!-- estado actual -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-info">
+                <span class="stat-value" id="stat-total">0</span>
+                <span class="stat-label">Total directivos</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <span class="stat-value" id="stat-cargos">0</span>
+                <span class="stat-label">Cargos distintos</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-info">
+                <span class="stat-value" id="stat-top">—</span>
+                <span class="stat-label">Cargo más lto</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de búsqueda y filtro -->
+    <div class="toolbar">
+        <div class="search-wrapper">
+            <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" id="search-input" placeholder="Buscar por nombre, identificación, correo…" oninput="renderTable()">
+        </div>
+        <div class="filter-group">
+            <select id="filter-cargo" onchange="renderTable()">
+                <option value="">Todos los cargos</option>
+                <option>Rector</option>
+                <option>Coordinador Académico</option>
+                <option>Coordinador de Convivencia</option>
+                <option>Secretario Académico</option>
+                <option>Tesorero</option>
+                <option>Psicólogo</option>
+                <option>Orientador</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-card">
+        <div class="table-wrapper">
+            <table id="directivos-table">
+                <thead>
+                    <tr>
+                        <th>Directivo</th>
+                        <th>Identificación</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Cargo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+        <div class="table-empty" id="table-empty" style="display:none;">
+            <div class="empty-icon">🔍</div>
+            <p>No se encontraron directivos</p>
+            <span>Intenta cambiar los filtros o agrega un nuevo directivo</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- ── MODAL CREAR / EDITAR ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="modal-title">
+                <div class="modal-icon" id="modal-icon">➕</div>
+                <div>
+                    <h2 id="modal-heading">Nuevo Directivo</h2>
+                    <p id="modal-subheading">Completa los datos para registrar un directivo</p>
+                </div>
+            </div>
+            <button class="modal-close" onclick="closeModal()">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        <form id="directivo-form" onsubmit="handleSubmit(event)">
+            <input type="hidden" id="edit-id">
+
+            <!-- Preview de avatar -->
+            <div class="avatar-preview-row">
+                <div class="dir-avatar-lg" id="avatar-preview">
+                    <span id="avatar-initials">?</span>
+                </div>
+                <div class="avatar-preview-info">
+                    <strong id="preview-nombre">Nombre completo</strong>
+                    <p id="preview-cargo">Cargo no definido</p>
+                </div>
+            </div>
+
+            <div class="form-grid">
+                <div class="field-group">
+                    <label for="f-identificacion">Identificación <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M8 10h.01M8 14h.01M12 10h4M12 14h4"/></svg>
+                        <input type="text" id="f-identificacion" name="identificacion" placeholder="Ej: 1098765432" required>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="f-telefono">Teléfono <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.86 19.86 0 013.08 4.18 2 2 0 015 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L9.09 9.91a16 16 0 006.99 7l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
+                        <input type="text" id="f-telefono" name="telefono" placeholder="Ej: +57 300 000 0000" required>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="f-nombres">Nombres <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        <input type="text" id="f-nombres" name="nombres" placeholder="Ej: Carlos Andrés" required oninput="updatePreview()">
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="f-apellidos">Apellidos <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                        <input type="text" id="f-apellidos" name="apellidos" placeholder="Ej: Mejía Vargas" required oninput="updatePreview()">
+                    </div>
+                </div>
+                <div class="field-group field-full">
+                    <label for="f-email">Correo electrónico <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+                        <input type="email" id="f-email" name="email" placeholder="Ej: directivo@academia.edu.co" required>
+                    </div>
+                </div>
+                <div class="field-group field-full">
+                    <label for="f-cargo">Cargo <span class="required">*</span></label>
+                    <div class="input-wrapper">
+                        <svg class="input-icon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+                        <select id="f-cargo" name="cargo" required onchange="updatePreview()">
+                            <option value="">Selecciona un cargo</option>
+                            <option>Rector</option>
+                            <option>Fundador</option>
+                            <option>Lider de area</option>
+                            <option>Psicólogo</option>
+                            <option>Tutor</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button type="submit" class="btn-primary">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span id="submit-label">Guardar directivo</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-overlay" id="confirm-overlay" onclick="handleConfirmOverlay(event)">
+    <div class="modal modal-sm">
+        <div class="confirm-icon">🗑️</div>
+        <h3>¿Eliminar directivo?</h3>
+        <p id="confirm-text">Esta acción no se puede deshacer.</p>
+        <div class="modal-actions" style="justify-content:center; padding:0;">
+            <button class="btn-secondary" onclick="closeConfirm()">Cancelar</button>
+            <button class="btn-danger" id="confirm-delete-btn">Eliminar</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../scripts/directivos.js"></script>
+</body>
+</html>

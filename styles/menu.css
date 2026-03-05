@@ -342,3 +342,52 @@ main {
   display: none;
 }
 .backdrop.active { display: block; }
+/* ── TARJETA BIENVENIDA ── */
+.welcome-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  padding: 24px 32px;
+  max-width: 560px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(28,52,126,0.25);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.welcome-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px rgba(28,52,126,0.35);
+}
+
+.welcome-card-icon {
+  font-size: 2.4rem;
+  flex-shrink: 0;
+}
+
+.welcome-card-body h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.welcome-card-body h2 span {
+  color: #a5c0ff;
+}
+
+.welcome-card-body p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+  margin: 0;
+}
+
+.welcome-card-body p b {
+  color: #a5c0ff;
+  font-weight: 700;
+}
