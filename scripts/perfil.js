@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('profileForm');
+    const input = document.getElementById('nombre')
     
     //Cargar datos del LocalStorage al iniciar
-    const savedData = JSON.parse(localStorage.getItem('userProfile'));
+    const savedData = JSON.parse(localStorage.getItem('user'));
 
     if (savedData) {
         Object.keys(savedData).forEach(key => {
@@ -13,7 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
      //Actualizar el nombre visual en el header
-        document.getElementById('display-name').textContent = savedData.nombre || "Usuario";
+        document.getElementById('display-name').textContent = savedData.named;
+        document.getElementById('display-role').textContent = savedData.description;
+        input.removeAttribute('placeholder');
+        input.value = savedData.named;
     }
 
     //Guardar datos al hacer submit
@@ -27,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('userProfile', JSON.stringify(data));
 
         //Actualizar UI al instante mr anyelo
-        document.getElementById('display-name').textContent = data.nombre;
+        document.getElementById('display-name').textContent = data.named;
         
         alert('¡Información guardada con éxito!');
     });

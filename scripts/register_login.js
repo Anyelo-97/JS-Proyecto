@@ -1,5 +1,7 @@
 const email = document.getElementById("email");
 const password = document.getElementById("password");
+const named = document.getElementById("name");
+const description = document.getElementById("description");
 const btnIngresar = document.getElementById("ingresar");
 const btnRegistrar = document.getElementById("registrar");
 const rol = document.getElementById("rol");
@@ -12,6 +14,9 @@ submitButton.disabled = true;
 
 email.addEventListener("input", validarCampos);
 password.addEventListener("input", validarCampos);
+named.addEventListener("input", validarCampos);
+description.addEventListener("input", validarCampos);
+
 if (rol) rol.addEventListener("change", validarCampos);
 
 submitButton.addEventListener("click", (e) => {
@@ -27,19 +32,32 @@ submitButton.addEventListener("click", (e) => {
 });
 
 function validarCampos() {
-        email.value.trim() === "" || 
-        password.value.trim() === "";
+    let camposValidos = true;
 
-        if (rol) {
-            camposValidos = camposValidos && rol.value !== "";
-        }
-        submitButton.disabled = !camposValidos;
+    // Validar campos obligatorios
+    if (
+        email.value.trim() === "" ||
+        password.value.trim() === "" ||
+        named.value.trim() === "" ||
+        description.value.trim() === ""
+    ) {
+        camposValidos = false;
+    }
+
+    // Validar select si existe
+    if (rol && rol.value === "") {
+        camposValidos = false;
+    }
+
+    // Activar/desactivar botón
+    submitButton.disabled = !camposValidos;
 }
-
 function register() {
     const user = {
         email: email.value.trim(),
         password: password.value.trim(),
+        named: named.value.trim(),
+        description: description.value.trim(),
         rol: rol.value
     };
 
@@ -60,12 +78,15 @@ function login() {
 
     if (
         email.value.trim() === userGuardado.email &&
-        password.value.trim() === userGuardado.password
+        password.value.trim() === userGuardado.password &&
+        named.value.trim() === userGuardado.named &&
+        description.value.trim() === userGuardado.description
     ) {
 
         // Guardamos sesión activa y rol
         localStorage.setItem("loggedIn", "true");
         localStorage.setItem("rolActivo", userGuardado.rol);
+        console.log(userGuardado)
 
         alert("Login correcto ✅");
 
@@ -74,4 +95,6 @@ function login() {
         alert("Datos incorrectos ❌");
     }
 }
+
+
 

@@ -1,0 +1,9 @@
+#empty-msg { display: block; text-align: center; padding: 40px 0; }
+
+.btnAdd{
+    width: 100px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    margin-top: 10vw;
+}
