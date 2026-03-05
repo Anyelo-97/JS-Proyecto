@@ -1,5 +1,5 @@
 const STORAGE_KEY = 'academia_docentes';
-
+const iniciales = document.getElementById("avatar");
 const SAMPLE_DATA = [
     { id: 1, codigo: 'DOC-001', identificacion: '12345678', nombres: 'María', apellidos: 'González Ruiz', email: 'mgonzalez@academia.edu.co', area: 'Biología', foto: '' },
     { id: 2, codigo: 'DOC-002', identificacion: '87654321', nombres: 'Carlos', apellidos: 'Martínez López', email: 'cmartinez@academia.edu.co', area: 'Informática', foto: '' },
@@ -25,6 +25,8 @@ if (savedData) {
   });
 }
 avatarName.textContent = savedData.named;
+
+iniciales.textContent = avatarName.textContent.substring(0, 2).toUpperCase();
 
 
 document.addEventListener('DOMContentLoaded', () => {

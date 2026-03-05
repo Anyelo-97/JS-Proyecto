@@ -1,6 +1,7 @@
 let currentOpen = null;
 const avatarName = document.getElementById('avatar-name');
 const savedData = JSON.parse(localStorage.getItem('user'));
+const iniciales = document.getElementById("avatar")
 
 if (savedData) {
   Object.keys(savedData).forEach(key => {
@@ -12,19 +13,18 @@ if (savedData) {
   avatarName.textContent = savedData.named;
 }
 
-/**
- * Abre o cierra un dropdown por su ID.
- * @param {string} id - El identificador del dropdown (docentes, directivos, cursos, perfil)
- */
-function toggleDropdown(id) {
-  const dropdown = document.getElementById('dropdown-' + id);
-  const btn = document.getElementById('btn-' + id);
+iniciales.textContent = avatarName.textContent.substring(0, 2).toUpperCase();
+
+
+function toggleDropdown(name) {
+  const dropdown = document.getElementById('dropdown-' + name);
+  const btn = document.getElementById('btn-' + name);
   const backdrop = document.getElementById('backdrop');
 
   if (!dropdown || !btn) return;
 
   // Cierra otro dropdown abierto
-  if (currentOpen && currentOpen !== id) {
+  if (currentOpen && currentOpen !== name) {
     closeDropdown(currentOpen);
   }
 
@@ -40,33 +40,26 @@ function toggleDropdown(id) {
   }
 }
 
-/**
- * Cierra un dropdown por su ID
- * @param {string} id - identificador de dropdown
- */
-function closeDropdown(id) {
-  const dropdown = document.getElementById('dropdown-' + id);
-  const btn = document.getElementById('btn-' + id);
-
-  if (dropdown) dropdown.classList.remove('open');
-  if (btn) btn.classList.remove('open');
-  document.getElementById('backdrop').classList.remove('active');
-  currentOpen = null;
+function toggleDropdown(name) {
+  const dropdown = document.getElementById('dropdown-' + name);
+  const btn      = document.getElementById('btn-' + name);
+  if (!dropdown) return;
+  const isOpen = dropdown.classList.contains('open');
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+  document.querySelectorAll('.nav-link, .avatar-btn').forEach(b => b.classList.remove('open'));
+  if (!isOpen) {
+      dropdown.classList.add('open');
+      if (btn) btn.classList.add('open');
+  }
 }
 
-// Cierra el dropdown al hacer clic en el backdrop
-document.getElementById('backdrop').addEventListener('click', () => {
-  if (currentOpen) closeDropdown(currentOpen);
-});
-
-// Asigna el toggle al botón de perfil
-document.getElementById('btn-perfil').addEventListener('click', () => {
-  toggleDropdown('perfil');
-});
-
-// Cierra dropdowns al presionar Escape
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && currentOpen) {
-    closeDropdown(currentOpen);
+document.addEventListener('click', e => {
+  if (!e.target.closest('.dropdown-wrapper')) {
+      document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+      document.querySelectorAll('.nav-link, .avatar-btn').forEach(b => b.classList.remove('open'));
   }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeConfirm(); }
 });

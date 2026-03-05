@@ -1,5 +1,5 @@
 const avatarName = document.getElementById('avatar-name');
-
+const iniciales = document.getElementById("avatar");
 const savedData = JSON.parse(localStorage.getItem('user'));
 
 if (savedData) {
@@ -9,6 +9,8 @@ if (savedData) {
   });
   avatarName.textContent = savedData.named;
 }
+
+iniciales.textContent = avatarName.textContent.substring(0, 2).toUpperCase();
 
 const rol = savedData?.rol;
 

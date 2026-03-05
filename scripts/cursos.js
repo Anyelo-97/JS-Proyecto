@@ -2,6 +2,7 @@ const cursos = document.getElementById("cursos");
 const addCursos = document.getElementById("addCursos");
 const avatarName = document.getElementById('avatar-name');
 const savedData = JSON.parse(localStorage.getItem('user'));
+const iniciales = document.getElementById("avatar");
 let currentOpen = null;
 
 if (savedData) {
@@ -11,6 +12,8 @@ if (savedData) {
   });
   avatarName.textContent = savedData.named;
 }
+
+iniciales.textContent = avatarName.textContent.substring(0, 2).toUpperCase();
 
 const rol = savedData.rol;
 
