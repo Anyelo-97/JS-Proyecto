@@ -34,7 +34,6 @@ submitButton.addEventListener("click", (e) => {
 function validarCampos() {
     let camposValidos = true;
 
-    // Validar campos obligatorios
     if (
         email.value.trim() === "" ||
         password.value.trim() === "" ||
@@ -44,12 +43,10 @@ function validarCampos() {
         camposValidos = false;
     }
 
-    // Validar select si existe
     if (rol && rol.value === "") {
         camposValidos = false;
     }
 
-    // Activar/desactivar botón
     submitButton.disabled = !camposValidos;
 }
 function register() {
@@ -83,7 +80,6 @@ function login() {
         description.value.trim() === userGuardado.description
     ) {
 
-        // Guardamos sesión activa y rol
         localStorage.setItem("loggedIn", "true");
         localStorage.setItem("rolActivo", userGuardado.rol);
         console.log(userGuardado)

@@ -5,6 +5,8 @@ const savedData = JSON.parse(localStorage.getItem('user'));
 const iniciales = document.getElementById("avatar");
 let currentOpen = null;
 
+
+
 if (savedData) {
   Object.keys(savedData).forEach(key => {
     const input = document.getElementById(key);
@@ -37,7 +39,6 @@ function toggleDropdown(id) {
 
   if (!dropdown || !btn) return;
 
-  // Cierra otro dropdown abierto
   if (currentOpen && currentOpen !== id) {
     closeDropdown(currentOpen);
   }
@@ -68,17 +69,12 @@ function closeDropdown(id) {
   currentOpen = null;
 }
 
-// Cierra el dropdown al hacer clic en el backdrop
-document.getElementById('backdrop').addEventListener('click', () => {
-  if (currentOpen) closeDropdown(currentOpen);
-});
 
-// Asigna el toggle al botón de perfil
+
 document.getElementById('btn-perfil').addEventListener('click', () => {
   toggleDropdown('perfil');
 });
 
-// Cierra dropdowns al presionar Escape
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && currentOpen) {
     closeDropdown(currentOpen);
@@ -87,11 +83,16 @@ document.addEventListener('keydown', (e) => {
 
 
 
+function validarTexto(texto) {
+  return /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s.,-]+$/.test(texto);
+}
+
+function validarDuracion(texto) {
+  return /^[0-9]+\s*(semanas|meses|días|dias)$/i.test(texto);
+}
 
 
-// ─── MODAL ───────────────────────────────────────────────
 function abrirModal() {
-  // Evitar duplicados
   if (document.getElementById("modalCurso")) return;
 
   const overlay = document.createElement("div");
@@ -116,14 +117,12 @@ function abrirModal() {
           <div class="form-group">
             <label>Área de enfoque <span class="req">*</span></label>
             <select id="areaCurso">
-              <option value="">Seleccionar...</option>
-              <option>Coding</option>
-              <option>Matematicas</option>
-              <option>Humanidades</option>
-              <option>Ser</option>
-              <option>Diseño gráfico</option>
-              <option>Inglés</option>
-              <option>Otro</option>
+                            <option value="">Selecciona un área</option>
+                            <option>Coding</option>
+                            <option>Matemáticas</option>
+                            <option>Ser</option>
+                            <option>DiseñoGrafico</option>
+                            <option>Inglés</option>
             </select>
           </div>
 
@@ -210,7 +209,25 @@ function cerrarModal() {
   }
 }
 
+function obtenerDocentesDisponibles(areaCurso) {
+  const docentes = JSON.parse(localStorage.getItem("academia_docentes")) || [];
+  const cursos = JSON.parse(localStorage.getItem("cursos")) || [];
+
+  const docentesOcupados = new Set();
+
+  cursos.forEach(curso => {
+    curso.sesiones?.forEach(s => {
+      if (s.docenteId) docentesOcupados.add(s.docenteId);
+    });
+  });
+
+  return docentes.filter(d =>
+    d.area === areaCurso && !docentesOcupados.has(d.id)
+  );
+}
+
 function guardarCurso() {
+
   const nombre = document.getElementById("nombreCurso").value.trim();
   const area = document.getElementById("areaCurso").value;
   const duracion = document.getElementById("duracionCurso").value.trim();
@@ -222,13 +239,44 @@ function guardarCurso() {
     return;
   }
 
+  if (!validarTexto(nombre)) {
+    alert("El nombre del curso contiene caracteres no permitidos");
+    return;
+  }
+
+  if (!validarDuracion(duracion)) {
+    alert("La duración debe ser algo como: 8 semanas");
+    return;
+  }
+
+  const docentesDisponibles = obtenerDocentesDisponibles(area);
+
+  if (docentesDisponibles.length === 0) {
+    alert("No hay docentes disponibles para esta área.");
+    return;
+  }
+
   const sesiones = [];
+  let docenteIndex = 0;
+
   document.querySelectorAll(".sesion-item").forEach((el, i) => {
+
+    const docente = docentesDisponibles[docenteIndex];
+
     sesiones.push({
       numero: i + 1,
       titulo: el.querySelector(".sesion-titulo").value.trim(),
       descripcion: el.querySelector(".sesion-desc").value.trim(),
+      docenteId: docente.id,
+      docenteNombre: docente.nombres + " " + docente.apellidos
     });
+
+    docenteIndex++;
+
+    if (docenteIndex >= docentesDisponibles.length) {
+      docenteIndex = 0;
+    }
+
   });
 
   const curso = {
@@ -238,11 +286,12 @@ function guardarCurso() {
     duracion,
     descripcion: desc,
     nivel: nivelEl.value,
-    sesiones,
+    sesiones
   };
 
   const cursosGuardados = JSON.parse(localStorage.getItem("cursos")) || [];
   cursosGuardados.push(curso);
+
   localStorage.setItem("cursos", JSON.stringify(cursosGuardados));
 
   cerrarModal();
@@ -262,16 +311,20 @@ function renderizarCursos() {
     <div class="curso-card">
       <div class="curso-card-header">
         <span class="curso-area">${c.area}</span>
+        
         <span class="curso-nivel nivel-${c.nivel.toLowerCase()}">${c.nivel}</span>
       </div>
       <h3 class="curso-nombre">${c.nombre}</h3>
       <p class="curso-desc">${c.descripcion || "Sin descripción"}</p>
       <div class="curso-footer">
+      
         <span>⏱ ${c.duracion}</span>
         <span>📋 ${c.sesiones.length} sesión${c.sesiones.length !== 1 ? "es" : ""}</span>
+        <span>👨‍🏫 ${c.sesiones[0]?.docenteNombre || "Sin docente"}</span>  
       </div>
     </div>
   `).join("");
 }
-
-renderizarCursos();
+document.addEventListener("DOMContentLoaded", () => {
+  renderizarCursos();
+});

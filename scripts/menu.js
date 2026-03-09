@@ -1,7 +1,20 @@
 let currentOpen = null;
 const avatarName = document.getElementById('avatar-name');
 const savedData = JSON.parse(localStorage.getItem('user'));
-const iniciales = document.getElementById("avatar")
+const iniciales = document.getElementById("avatar");
+
+const cursos = document.getElementById("cursos");
+const cursosDt = JSON.parse(localStorage.getItem("cursos")) || [];
+const totalCursos = cursosDt.length;
+
+const docentes = document.getElementById("docentes");
+const docentesDt = JSON.parse(localStorage.getItem('academia_docentes')) || [];
+const totalDocentes = docentesDt.length;
+
+const administrativos = document.getElementById("administrativos");
+const directivos = JSON.parse(localStorage.getItem('academia_directivos')) || [];
+const totalDirectivos = directivos.length;
+
 
 if (savedData) {
   Object.keys(savedData).forEach(key => {
@@ -23,7 +36,6 @@ function toggleDropdown(name) {
 
   if (!dropdown || !btn) return;
 
-  // Cierra otro dropdown abierto
   if (currentOpen && currentOpen !== name) {
     closeDropdown(currentOpen);
   }
@@ -63,3 +75,15 @@ document.addEventListener('click', e => {
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeModal(); closeConfirm(); }
 });
+
+
+docentes.innerHTML = `
+  <p>${totalDocentes}</p>
+`;
+administrativos.innerHTML = `
+  <p>${totalDirectivos}</p>
+`;
+
+cursos.innerHTML = `
+  <p>${totalCursos}</p>
+`;

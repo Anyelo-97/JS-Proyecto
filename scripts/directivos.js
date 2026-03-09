@@ -16,18 +16,14 @@ const rol = savedData?.rol;
 
 const STORAGE_KEY = 'academia_directivos';
 
-// ejemplos de muestra
 const SAMPLE_DATA = [
     { id: 1, identificacion: '10234567', nombres: 'Roberto',  apellidos: 'Álvarez Mora',    email: 'ralvarez@academia.edu.co',  telefono: '+57 310 234 5678', cargo: 'Rector' },
-    { id: 2, identificacion: '20345678', nombres: 'Sandra',   apellidos: 'Fuentes López',   email: 'sfuentes@academia.edu.co',  telefono: '+57 311 345 6789', cargo: 'Tutor' },
 ];
 
-// estado
 let directivos     = [];
 let editingId      = null;
 let pendingDeleteId = null;
 
-// inicio
 document.addEventListener('DOMContentLoaded', () => {
     const saved = localStorage.getItem(STORAGE_KEY);
     directivos = saved ? JSON.parse(saved) : [...SAMPLE_DATA];
@@ -36,12 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
     actualizarStats();
 });
 
-// guardado
 function guardar() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(directivos));
 }
 
-//las stats (estadisticas in spanish)
 function actualizarStats() {
     document.getElementById('stat-total').textContent = directivos.length;
 
@@ -52,7 +46,7 @@ function actualizarStats() {
         const freq = {};
         cargos.forEach(c => freq[c] = (freq[c] || 0) + 1);
         const top = Object.entries(freq).sort((a, b) => b[1] - a[1])[0][0];
-        // esto hace que sea mas corto si es que es largototote
+
         document.getElementById('stat-top').textContent = top.split(' ').slice(0, 2).join(' ');
     } else {
         document.getElementById('stat-top').textContent = '—';
