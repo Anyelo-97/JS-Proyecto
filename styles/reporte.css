@@ -1,0 +1,23 @@
+.main-container{
+    width: 50vw;
+    border: 1px solid;
+    margin: 100px auto;
+    text-align: center;
+    background: #1C1678;
+    background: linear-gradient(166deg, rgba(28, 22, 120, 1) 0%, rgba(132, 123, 255, 1) 75%, rgba(123, 201, 255, 1) 100%);
+    color: white;
+    border-radius: 20px;
+    padding: 2px;
+}
+
+table{
+    width: 100%;
+    margin: 10px auto;
+    border-bottom: black solid 1px;
+    border-top: black solid 1px;
+}
+
+
+th, td{
+    width: 50%;
+}
